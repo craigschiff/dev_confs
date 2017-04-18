@@ -1,0 +1,31 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  date: 2017-04-17 13:41:15
+  topic_id: 1
+  website: MyString
+  organizer_id: 1
+  submission_deadline: 2017-04-17 13:41:15
+  presenters: MyText
+  address: MyText
+  perks: MyText
+  cost: MyString
+  submission_sales_date: 2017-04-17 13:41:15
+  ticket_sales_date: 2017-04-17 13:41:15
+
+two:
+  name: MyString
+  description: MyText
+  date: 2017-04-17 13:41:15
+  topic_id: 1
+  website: MyString
+  organizer_id: 1
+  submission_deadline: 2017-04-17 13:41:15
+  presenters: MyText
+  address: MyText
+  perks: MyText
+  cost: MyString
+  submission_sales_date: 2017-04-17 13:41:15
+  ticket_sales_date: 2017-04-17 13:41:15
