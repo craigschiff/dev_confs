@@ -10,6 +10,6 @@ bk_city = City.create(name: "bk")
 bk_js_event = Event.create(name: "jsconf", description: "much js", topic: js_topic, city: bk_city)
 
 barcelona = City.create!(name: "Barcelona")
-dison = Organizer.create!(name: "Dison", city: barcelona)
+dison = Organizer.create!(name: "Dison")
 elixir = Topic.create!(name: 'Elixir')
 event = Event.create!(name: 'Elixir Conf EU', description: 'Elixir stuff!', topic: elixir,  city: barcelona, organizer:dison)

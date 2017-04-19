@@ -10,4 +10,7 @@ class V1::EventsController < ApplicationController
     render json: event
   end
 
+  def create
+
+  end
 end

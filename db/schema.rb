@@ -61,10 +61,8 @@ ActiveRecord::Schema.define(version: 20170417183053) do
 
   create_table "organizers", force: :cascade do |t|
     t.string   "name"
-    t.integer  "city_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["city_id"], name: "index_organizers_on_city_id", using: :btree
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -99,7 +97,6 @@ ActiveRecord::Schema.define(version: 20170417183053) do
   add_foreign_key "events", "organizers"
   add_foreign_key "organizer_topics", "organizers"
   add_foreign_key "organizer_topics", "topics"
-  add_foreign_key "organizers", "cities"
   add_foreign_key "profiles", "accounts"
   add_foreign_key "profiles", "cities"
   add_foreign_key "rsvps", "events"
