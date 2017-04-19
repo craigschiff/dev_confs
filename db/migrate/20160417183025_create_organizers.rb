@@ -2,8 +2,6 @@ class CreateOrganizers < ActiveRecord::Migration[5.0]
   def change
     create_table :organizers do |t|
       t.string :name
-      t.belongs_to :city, foreign_key: true
-
       t.timestamps
     end
   end
