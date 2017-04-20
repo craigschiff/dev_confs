@@ -11,6 +11,22 @@ class V1::EventsController < ApplicationController
   end
 
   def create
+    event = {}
+    event[:topic] = Topic.create(name: event_params["topic"])
+    event[:organizer] = Organizer.create(name: event_params["organizer"])
+    event[:city] = City.create(name: event_params["city"])
+    event[:name] = event_params["name"]
+    event[:description] = event_params["description"]
+    event[:website] = event_params["website"]
+    event[:cost] = event_params["cost"]
+    event[:perks] = event_params["perks"]
+    event[:date] = event_params["date"]
+    new_event = Event.create!(event)
+    render json: Event.all
+  end
 
+  private
+  def event_params
+    params.require(:event).permit!
   end
 end
