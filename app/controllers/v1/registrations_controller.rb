@@ -10,6 +10,7 @@ class V1::RegistrationsController < ApplicationController
     end
   end
 
+
   private
   def account_params
     params.require(:account).permit(:username, :password)
