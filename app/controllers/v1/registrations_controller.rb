@@ -1,4 +1,4 @@
-class v1::RegistrationsController < ApplicationController
+class V1::RegistrationsController < ApplicationController
   def create
     account = Account.new(account_params)
     if account.save

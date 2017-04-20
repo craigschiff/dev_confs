@@ -1,5 +1,5 @@
-class v1::SessionsController < ApplicationController
-  skip_before_action :authenticate
+class V1::SessionsController < ApplicationController
+  #skip_before_action :authenticate
 
   def create
     account = Account.authenticate(account_params[:username], account_params[:password])
