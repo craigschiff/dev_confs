@@ -1,4 +1,4 @@
-class v1::RegistrationsController < ApplicationController
+class V1::RegistrationsController < ApplicationController
   def create
     account = Account.new(account_params)
     if account.save
@@ -9,6 +9,7 @@ class v1::RegistrationsController < ApplicationController
       render json: {errors: account.errors}, status: 401
     end
   end
+
 
   private
   def account_params
