@@ -7,8 +7,7 @@ class CreateProfiles < ActiveRecord::Migration[5.0]
       t.string :portfolio
       t.belongs_to :city, foreign_key: true
       t.belongs_to :account, foreign_key: true
-
-
+      
       t.timestamps
     end
   end
