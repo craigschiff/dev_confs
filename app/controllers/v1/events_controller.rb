@@ -23,10 +23,13 @@ class V1::EventsController < ApplicationController
     event[:date] = event_params["date"]
     new_event = Event.create!(event)
     render json: Event.all
+    byebug
   end
 
   private
   def event_params
-    params.require(:event).permit!
+    params.require(:event).permit(:city, :topic, :organizer,
+                                  :name, :description, :website,
+                                  :cost, :perks, :date)
   end
 end
