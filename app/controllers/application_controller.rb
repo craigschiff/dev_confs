@@ -7,9 +7,7 @@ class ApplicationController < ActionController::API
   end
 
   def logged_in?
-    byebug
     authenticate_or_request_with_http_token do |token, options|
-      byebug
       Account.from_token(token)
     end
   end
