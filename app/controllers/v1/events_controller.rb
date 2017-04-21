@@ -12,9 +12,9 @@ class V1::EventsController < ApplicationController
 
   def create
     event = {}
-    event[:topic] = Topic.create(name: event_params["topic"])
-    event[:organizer] = Organizer.create(name: event_params["organizer"])
-    event[:city] = City.create(name: event_params["city"])
+    event[:topic] = Topic.find_or_create_by(name: event_params["topic"])
+    event[:organizer] = Organizer.find_or_create_by(name: event_params["organizer"])
+    event[:city] = City.find_or_create_by(name: event_params["city"])
     event[:name] = event_params["name"]
     event[:description] = event_params["description"]
     event[:website] = event_params["website"]
@@ -22,8 +22,7 @@ class V1::EventsController < ApplicationController
     event[:perks] = event_params["perks"]
     event[:date] = event_params["date"]
     new_event = Event.create!(event)
-    render json: Event.all
-    byebug
+    render json: new_event
   end
 
   private
