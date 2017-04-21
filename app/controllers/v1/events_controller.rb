@@ -21,14 +21,18 @@ class V1::EventsController < ApplicationController
     event[:cost] = event_params["cost"]
     event[:perks] = event_params["perks"]
     event[:date] = event_params["date"]
+    event[:address] = event_params["address"]
     new_event = Event.create!(event)
     render json: new_event
+  end
+
+  def updated
   end
 
   private
   def event_params
     params.require(:event).permit(:city, :topic, :organizer,
                                   :name, :description, :website,
-                                  :cost, :perks, :date)
+                                  :cost, :perks, :date, :address)
   end
 end

@@ -33,21 +33,18 @@ ActiveRecord::Schema.define(version: 20170417183053) do
     t.string   "name"
     t.text     "description"
     t.datetime "date"
-    t.integer  "topic_id"
     t.string   "website"
-    t.integer  "organizer_id"
-    t.datetime "submission_deadline"
-    t.text     "presenters"
     t.text     "address"
     t.text     "perks"
     t.string   "cost"
-    t.datetime "submission_sales_date"
-    t.datetime "ticket_sales_date"
+    t.integer  "organizer_id"
     t.integer  "city_id"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.integer  "topic_id"
+    t.datetime "created_at",   null: false
+    t.datetime "updated_at",   null: false
     t.index ["city_id"], name: "index_events_on_city_id", using: :btree
     t.index ["organizer_id"], name: "index_events_on_organizer_id", using: :btree
+    t.index ["topic_id"], name: "index_events_on_topic_id", using: :btree
   end
 
   create_table "organizer_topics", force: :cascade do |t|
@@ -95,6 +92,7 @@ ActiveRecord::Schema.define(version: 20170417183053) do
 
   add_foreign_key "events", "cities"
   add_foreign_key "events", "organizers"
+  add_foreign_key "events", "topics"
   add_foreign_key "organizer_topics", "organizers"
   add_foreign_key "organizer_topics", "topics"
   add_foreign_key "profiles", "accounts"

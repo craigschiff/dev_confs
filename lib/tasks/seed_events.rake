@@ -16,9 +16,9 @@ namespace :update_db do
       event = Event.find_or_create_by(topic: topic, organizer: organizer,
                                       description: description, name: name,
                                       date: date, website: website)
-      count = counter(count)
+      count = counter(count) #thiscounter is to let seeders know how many are there
     end
-    puts ""
+    puts "" #this is strictly to add a return aftr the counter
   end
 
   def getTopic(id)
