@@ -26,7 +26,20 @@ class V1::EventsController < ApplicationController
     render json: new_event
   end
 
-  def updated
+  def update
+    event = Event.find_by(id: params[:id])
+    event.topic = Topic.find_or_create_by(name: event_params["topic"])
+    event.organizer = Organizer.find_or_create_by(name: event_params["organizer"])
+    event.city = City.find_or_create_by(name: event_params["city"])
+    event.name = event_params["name"]
+    event.description = event_params["description"]
+    event.website = event_params["website"]
+    event.cost = event_params["cost"]
+    event.perks = event_params["perks"]
+    event.date = event_params["date"]
+    event.address = event_params["address"]
+    event.save
+    render json: event
   end
 
   private

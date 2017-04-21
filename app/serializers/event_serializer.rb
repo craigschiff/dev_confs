@@ -1,9 +1,7 @@
 class EventSerializer < ActiveModel::Serializer
   attributes :id, :name, :description,
-  :date, :website, :address, :perks, :cost
-
-  belongs_to :city
-  belongs_to :organizer
-  belongs_to :topic
+  :date, :website, :address, :perks, :cost,
+  :city, :organizer, :topic
   has_many :rsvps
+
 end
