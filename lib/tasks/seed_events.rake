@@ -13,9 +13,10 @@ namespace :update_db do
       description = event["description"]["text"]
       website = event["url"]
       date = event["start"]["utc"]
+      image = event["logo"]? event["logo"]["url"] : "http://bento.cdn.pbs.org/hostedbento-prod/filer_public/_bento_media/img/no-image-available.jpg"
       event = Event.find_or_create_by(topic: topic, organizer: organizer,
                                       description: description, name: name,
-                                      date: date, website: website)
+                                      date: date, website: website, image: image)
       count = counter(count) #thiscounter is to let seeders know how many are there
     end
     puts "" #this is strictly to add a return aftr the counter
