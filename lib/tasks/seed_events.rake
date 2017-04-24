@@ -3,6 +3,7 @@ namespace :update_db do
   task :seed_from_json => :environment do
     require 'open-uri'
     require 'json'
+    ['swift', 'java', 'ruby', 'python', 'javascript', 'c++', 'php']
     url = "https://www.eventbriteapi.com/v3/events/search/?q=developers%20conference&token=CV7XEC5IT6GB6M6RF236"
     results = JSON.parse(open(url).read)
     count = 1
@@ -19,10 +20,16 @@ namespace :update_db do
                                       date: date, website: website, image: image)
       count = counter(count) #thiscounter is to let seeders know how many are there
     end
-    puts "" #this is strictly to add a return aftr the counter
+    puts "" #this is strictly to add a return after the counter
   end
 
   def getTopic(id)
+    url = "https://www.eventbriteapi.com/v3/categories/#{id}/?token=AAXEJJLQI5U46AHOIFSE"
+    results = JSON.parse(open(url).read)
+    Topic.find_or_create_by(name: results["name"])
+  end
+
+  def getCity(id)
     url = "https://www.eventbriteapi.com/v3/categories/#{id}/?token=AAXEJJLQI5U46AHOIFSE"
     results = JSON.parse(open(url).read)
     Topic.find_or_create_by(name: results["name"])
