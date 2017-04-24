@@ -16,6 +16,7 @@ namespace :update_db do
     results = JSON.parse(open(url).read)
     count = 1
     results["events"].each do |event|
+      next if event["description"]["text"].nil?
       organizer = getOrganizer(event["organizer_id"])
       if event['venue_id']
         city = getCity(event['venue_id'])

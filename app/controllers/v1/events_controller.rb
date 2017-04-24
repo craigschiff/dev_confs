@@ -11,35 +11,29 @@ class V1::EventsController < ApplicationController
   end
 
   def create
-    event = {}
-    event[:topic] = Topic.find_or_create_by(name: event_params["topic"])
-    event[:organizer] = Organizer.find_or_create_by(name: event_params["organizer"])
-    event[:city] = City.find_or_create_by(name: event_params["city"])
-    event[:name] = event_params["name"]
-    event[:description] = event_params["description"]
-    event[:website] = event_params["website"]
-    event[:cost] = event_params["cost"]
-    event[:perks] = event_params["perks"]
-    event[:date] = event_params["date"]
-    event[:address] = event_params["address"]
-    new_event = Event.create!(event)
-    render json: new_event
+    event = make_event(Event.new, event_params)
+    event.save
+    render json: event
   end
 
   def update
-    event = Event.find_by(id: params[:id])
-    event.topic = Topic.find_or_create_by(name: event_params["topic"])
-    event.organizer = Organizer.find_or_create_by(name: event_params["organizer"])
-    event.city = City.find_or_create_by(name: event_params["city"])
-    event.name = event_params["name"]
-    event.description = event_params["description"]
-    event.website = event_params["website"]
-    event.cost = event_params["cost"]
-    event.perks = event_params["perks"]
-    event.date = event_params["date"]
-    event.address = event_params["address"]
+    event = make_event(Event.find_by(id: params[:id]), event_params)
     event.save
     render json: event
+  end
+
+  def make_event(event, params)
+    event.topic = Topic.find_or_create_by(name: params["topic"])
+    event.organizer = Organizer.find_or_create_by(name: params["organizer"])
+    event.city = City.find_or_create_by(name: params["city"])
+    event.name = params["name"]
+    event.description = params["description"]
+    event.website = params["website"]
+    event.cost = params["cost"]
+    event.perks = params["perks"]
+    event.date = params["date"]
+    event.address = params["address"]
+    event
   end
 
   private
