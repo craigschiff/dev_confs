@@ -1,7 +1,7 @@
 class V1::EventsController < ApplicationController
 
   def index
-    events = Event.all
+    events = Event.includes(:city, :topic, :organizer)
     render json: events
   end
 
