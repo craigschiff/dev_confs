@@ -4,5 +4,7 @@ class Event < ApplicationRecord
   has_many :profiles, through: :rsvps
   belongs_to :topic
   belongs_to :organizer
+  validates :name, uniqueness: true
+
 
 end
