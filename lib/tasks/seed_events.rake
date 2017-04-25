@@ -15,7 +15,7 @@ namespace :update_db do
     url = "https://www.eventbriteapi.com/v3/events/search/?q=#{topic.name}%20developers%20conference&token=#{Figaro.env.api_key}"
     results = JSON.parse(open(url).read)
     count = 1
-    results["events"].each do |event|
+    results["events"].take(10).each do |event|
       next if event["description"]["text"].nil?
       organizer = getOrganizer(event["organizer_id"])
       if event['venue_id']

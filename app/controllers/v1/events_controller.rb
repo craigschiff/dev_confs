@@ -22,6 +22,7 @@ class V1::EventsController < ApplicationController
     render json: event
   end
 
+  private
   def make_event(event, params)
     event.topic = Topic.find_or_create_by(name: params["topic"])
     event.organizer = Organizer.find_or_create_by(name: params["organizer"])
@@ -35,8 +36,7 @@ class V1::EventsController < ApplicationController
     event.address = params["address"]
     event
   end
-
-  private
+  
   def event_params
     params.require(:event).permit(:city, :topic, :organizer,
                                   :name, :description, :website,
