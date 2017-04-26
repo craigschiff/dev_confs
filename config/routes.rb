@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  resources :accounts
   namespace :v1 do
-    resources :organizers
-    resources :cities
-    resources :topics
-    resources :profiles
-    resources :events
+    resources :organizers, only:[:index,:show]
+    resources :cities, only:[:index,:show]
+    resources :topics, only:[:index,:show]
+    resources :events, only:[:index,:show,:create,:update] do
+      resources :comments, only:[:create]
+    end
     resources :sessions, only: [:create]
     resources :registrations, only: [:create]
     post '/events/:id', to: 'events#update'
