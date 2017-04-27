@@ -36,19 +36,19 @@ namespace :update_db do
   end
 
   def getCity(id)
-    url = "https://www.eventbriteapi.com/v3/venues/#{id}/?token=#{ENV["API_KEY"].env.api_key}"
+    url = "https://www.eventbriteapi.com/v3/venues/#{id}/?token=#{ENV["API_KEY"]}"
     results = JSON.parse(open(url).read)
     City.find_or_create_by(name: results["address"]["localized_area_display"])
   end
 
   def getAddress(id)
-    url = "https://www.eventbriteapi.com/v3/venues/#{id}/?token=#{ENV["API_KEY"].env.api_key}"
+    url = "https://www.eventbriteapi.com/v3/venues/#{id}/?token=#{ENV["API_KEY"]}"
     results = JSON.parse(open(url).read)
     results["address"]["address_1"]
   end
 
   def getOrganizer(id)
-    url = "https://www.eventbriteapi.com/v3/organizers/#{id}/?token=#{ENV["API_KEY"].env.api_key}"
+    url = "https://www.eventbriteapi.com/v3/organizers/#{id}/?token=#{ENV["API_KEY"]}"
     results = JSON.parse(open(url).read)
     Organizer.find_or_create_by(name: results["name"])
   end
