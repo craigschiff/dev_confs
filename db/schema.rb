@@ -57,41 +57,10 @@ ActiveRecord::Schema.define(version: 20170426141501) do
     t.index ["topic_id"], name: "index_events_on_topic_id", using: :btree
   end
 
-  create_table "organizer_topics", force: :cascade do |t|
-    t.integer  "topic_id"
-    t.integer  "organizer_id"
-    t.datetime "created_at",   null: false
-    t.datetime "updated_at",   null: false
-    t.index ["organizer_id"], name: "index_organizer_topics_on_organizer_id", using: :btree
-    t.index ["topic_id"], name: "index_organizer_topics_on_topic_id", using: :btree
-  end
-
   create_table "organizers", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-  end
-
-  create_table "profiles", force: :cascade do |t|
-    t.string   "name"
-    t.string   "city"
-    t.text     "skills"
-    t.string   "portfolio"
-    t.integer  "city_id"
-    t.integer  "account_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["account_id"], name: "index_profiles_on_account_id", using: :btree
-    t.index ["city_id"], name: "index_profiles_on_city_id", using: :btree
-  end
-
-  create_table "rsvps", force: :cascade do |t|
-    t.integer  "event_id"
-    t.integer  "profile_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["event_id"], name: "index_rsvps_on_event_id", using: :btree
-    t.index ["profile_id"], name: "index_rsvps_on_profile_id", using: :btree
   end
 
   create_table "topics", force: :cascade do |t|
@@ -104,10 +73,4 @@ ActiveRecord::Schema.define(version: 20170426141501) do
   add_foreign_key "events", "cities"
   add_foreign_key "events", "organizers"
   add_foreign_key "events", "topics"
-  add_foreign_key "organizer_topics", "organizers"
-  add_foreign_key "organizer_topics", "topics"
-  add_foreign_key "profiles", "accounts"
-  add_foreign_key "profiles", "cities"
-  add_foreign_key "rsvps", "events"
-  add_foreign_key "rsvps", "profiles"
 end

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     resources :organizers, only:[:index,:show]
     resources :cities, only:[:index,:show]
     resources :topics, only:[:index,:show]
-    resources :events, only:[:index,:show,:create,:update] do
+    resources :events, only:[:index,:show,:create] do
       resources :comments, only:[:create]
     end
     resources :sessions, only: [:create]

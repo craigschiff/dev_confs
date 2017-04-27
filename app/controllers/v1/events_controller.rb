@@ -12,7 +12,10 @@ class V1::EventsController < ApplicationController
 
   def create
     event = make_event(Event.new, event_params)
+    event.organizer = Organizer.find_or_create_by(name: params["organizer"])
+    event.city = City.find_or_create_by(name: params["city"])
     event.save
+    byebug
     render json: event
   end
 
@@ -25,8 +28,6 @@ class V1::EventsController < ApplicationController
   private
   def make_event(event, params)
     event.topic = Topic.find_or_create_by(name: params["topic"])
-    event.organizer = Organizer.find_or_create_by(name: params["organizer"])
-    event.city = City.find_or_create_by(name: params["city"])
     event.name = params["name"]
     event.description = params["description"]
     event.website = params["website"]
@@ -36,7 +37,7 @@ class V1::EventsController < ApplicationController
     event.address = params["address"]
     event
   end
-  
+
   def event_params
     params.require(:event).permit(:city, :topic, :organizer,
                                   :name, :description, :website,
