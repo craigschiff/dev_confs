@@ -1,5 +1,4 @@
 class Auth
-
   SECRET = Rails.application.secrets.jwt_secret
 
   def self.issue(payload)
